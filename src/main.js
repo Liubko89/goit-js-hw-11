@@ -42,7 +42,7 @@ function handleSearch(event) {
       imageList.innerHTML = createMarkup(data.hits);
       gallery.refresh();
     })
-    .catch(console.error);
+    .catch(handleError);
 
   form.reset();
 }
@@ -80,12 +80,32 @@ function createMarkup(arr) {
           />
         </a>
         <div class="container-additional-info">
-        <p class="description">Likes <span class="description-value">${likes}</span></p>
-        <p class="description">views <span class="description-value">${views}</span></p>
-        <p class="description">comments <span class="description-value">${comments}</span></p>
-        <p class="description">downloads <span class="description-value">${downloads}</span></p>
+        <div class="container-descr-inner"><p class="description">Likes</p><span class="description-value">${likes}</span></div>
+        
+        <div class="container-descr-inner"><p class="description">Views</p><span class="description-value">${views}</span></div>
+        
+
+        <div class="container-descr-inner"><p class="description">Comments</p><span class="description-value">${comments}</span></div>
+        
+
+        <div class="container-descr-inner"><p class="description">Downloads</p><span class="description-value">${downloads}</span></div>
+        
         </div>
       </li>`
     )
     .join('');
+}
+
+function handleError(err) {
+  console.error(err);
+  iziToast.show({
+    iconUrl: icon,
+    theme: 'dark',
+    message: 'Sorry, there is no connection with the server. Please try later!',
+    messageSize: '16px',
+    messageColor: 'white',
+    backgroundColor: '#EF4040',
+    position: 'center',
+    timeout: 5000,
+  });
 }

@@ -14,7 +14,10 @@ body {
 a {
   display: block;
   font-size: 20px;
-  margin-bottom: 12px;
+}
+
+p {
+  margin: 0;
 }
 
 .gallery {
@@ -89,7 +92,7 @@ img {
   inset: 5px;
   border-radius: 50%;
   border: 5px solid;
-  border-color: #b42d00 transparent;
+  border-color: #4e75ff transparent;
 }
 @keyframes roll {
   0% {
@@ -142,4 +145,27 @@ img {
   color: #fff;
   font-size: 16px;
   font-weight: 500;
+}
+
+.container-additional-info {
+  padding: 0 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border: 0.02px solid #4e75ff;
+}
+
+.container-descr-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description {
+  font-weight: 600;
+}
+
+.description-value {
+  text-align: center;
 }
