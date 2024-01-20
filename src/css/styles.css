@@ -26,9 +26,9 @@ p {
   padding-left: 0;
   list-style-type: none;
   padding: 24px 120px;
-  justify-content: space-between;
+  justify-content: center;
   display: flex;
-  gap: 4px;
+  column-gap: 24px;
   flex-wrap: wrap;
   margin-left: auto;
   margin-right: auto;
@@ -173,4 +173,10 @@ img {
 
 .description-value {
   text-align: center;
+}
+
+.preload {
+  color: #4e75ff;
+  font-size: 24px;
+  font-weight: 600;
 }

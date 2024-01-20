@@ -7,8 +7,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const formSearch = document.querySelector('.form');
 const imageList = document.querySelector('.gallery');
 
-const BASE_URL = 'https://pixabay.com/api';
-const KEY = '41861239-c6b09579488337e808a164f07';
 const gallery = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
@@ -18,13 +16,26 @@ formSearch.addEventListener('submit', handleSearch);
 
 function handleSearch(event) {
   event.preventDefault();
-  const form = event.currentTarget;
+  const searchQuery = event.currentTarget.elements.input.value;
 
-  if (!form.elements.input.value) {
+  if (!searchQuery.trim()) {
+    iziToast.show({
+      title: '❕',
+      theme: 'light',
+      message: `Please, fill in the search field`,
+      messageSize: '20px',
+      messageColor: '#808080',
+      backgroundColor: '#e7fc44',
+      position: 'topLeft',
+      timeout: 3000,
+    });
     return;
   }
 
-  fetchImages(form.elements.input.value)
+  imageList.innerHTML =
+    '<li><p class="preload">Loading images, please wait ...</p></li>';
+
+  fetchImages(searchQuery)
     .then(data => {
       if (data.hits.length === 0) {
         iziToast.show({
@@ -44,13 +55,21 @@ function handleSearch(event) {
     })
     .catch(handleError);
 
-  form.reset();
+  event.currentTarget.reset();
 }
 
 function fetchImages(value) {
-  return fetch(
-    `${BASE_URL}/?key=${KEY}&q=${value}&image_type=photo&orientation=horizontal&safesearch=true&per_page=9`
-  ).then(res => {
+  const BASE_URL = 'https://pixabay.com/api';
+
+  const searchParams = new URLSearchParams({
+    key: '41861239-c6b09579488337e808a164f07',
+    q: `${value}`,
+    image_type: 'photo',
+    orientation: 'horizontal',
+    safesearch: true,
+  });
+
+  return fetch(`${BASE_URL}?${searchParams}`).then(res => {
     if (!res.ok) {
       throw new Error(res.status);
     }
@@ -98,6 +117,7 @@ function createMarkup(arr) {
 
 function handleError(err) {
   console.error(err);
+  imageList.innerHTML = '';
   iziToast.show({
     iconUrl: icon,
     theme: 'dark',
