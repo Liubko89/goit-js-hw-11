@@ -101,7 +101,7 @@ function handleError(err) {
   iziToast.show({
     iconUrl: icon,
     theme: 'dark',
-    message: `Sorry, there is a problem with connection with the server. ${err.status}`,
+    message: `Sorry, there is a problem with connection with the server`,
     messageSize: '16px',
     messageColor: 'white',
     backgroundColor: '#EF4040',
