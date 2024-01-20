@@ -49,7 +49,7 @@ function handleSearch(event) {
 
 function fetchImages(value) {
   return fetch(
-    `${BASE_URL}?key=${KEY}&q=${value}&image_type=photo&orientation=horizontal&safesearch=true&per_page=9`
+    `${BASE_URL}/?key=${KEY}&q=${value}&image_type=photo&orientation=horizontal&safesearch=true&per_page=9`
   ).then(res => {
     if (!res.ok) {
       throw new Error(res.status);
