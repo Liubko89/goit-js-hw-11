@@ -18,6 +18,8 @@ function handleSearch(event) {
   event.preventDefault();
   const searchQuery = event.currentTarget.elements.input.value;
 
+  imageList.innerHTML = '';
+
   if (!searchQuery.trim()) {
     iziToast.show({
       title: '❕',
