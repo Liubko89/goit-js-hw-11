@@ -9,6 +9,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.04em;
+  width: 1440px;
 }
 
 a {
@@ -24,14 +25,13 @@ p {
   margin: 0;
   padding-left: 0;
   list-style-type: none;
-  width: 1440px;
-  padding: 24px 0px 24px 156px;
+  padding: 24px 120px;
+  justify-content: space-between;
   display: flex;
-  gap: 24px;
+  gap: 4px;
   flex-wrap: wrap;
-}
-
-.gallery-item {
+  margin-left: auto;
+  margin-right: auto;
   flex-basis: calc((100% - 2 * 24) / 3);
 }
 
@@ -145,6 +145,11 @@ img {
   color: #fff;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background-color: #6c8cff;
 }
 
 .container-additional-info {
