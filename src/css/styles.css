@@ -28,7 +28,7 @@ p {
   padding: 24px 120px;
   justify-content: center;
   display: flex;
-  column-gap: 24px;
+  gap: 24px;
   flex-wrap: wrap;
   margin-left: auto;
   margin-right: auto;
