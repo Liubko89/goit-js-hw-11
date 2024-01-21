@@ -68,7 +68,7 @@ function fetchImages(value) {
     q: `${value}`,
     image_type: 'photo',
     orientation: 'horizontal',
-    safesearch: true,
+    safesearch: 'true',
   });
 
   return fetch(`${BASE_URL}?${searchParams}`).then(res => {
