@@ -6,6 +6,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const formSearch = document.querySelector('.form');
 const imageList = document.querySelector('.gallery');
+const preload = document.querySelector('.preload');
 
 const gallery = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
@@ -34,8 +35,7 @@ function handleSearch(event) {
     return;
   }
 
-  imageList.innerHTML =
-    '<li><p class="preload">Loading images, please wait ...</p></li>';
+  preload.classList.remove('is-hidden');
 
   fetchImages(searchQuery)
     .then(data => {
@@ -55,7 +55,8 @@ function handleSearch(event) {
       imageList.innerHTML = createMarkup(data.hits);
       gallery.refresh();
     })
-    .catch(handleError);
+    .catch(handleError)
+    .finally(() => preload.classList.add('is-hidden'));
 
   event.currentTarget.reset();
 }
@@ -65,7 +66,7 @@ function fetchImages(value) {
 
   const searchParams = new URLSearchParams({
     key: '41861239-c6b09579488337e808a164f07',
-    q: `${value}`,
+    q: value,
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: 'true',
@@ -92,7 +93,6 @@ function createMarkup(arr) {
         downloads,
       }) =>
         `<li class="gallery-item">
-        <span class="loader"></span>
         <a class="gallery-link" href="${largeImageURL}">
            <img
             class="gallery-image"
@@ -123,7 +123,7 @@ function handleError(err) {
   iziToast.show({
     iconUrl: icon,
     theme: 'dark',
-    message: `Sorry, there is a problem with connection with the server`,
+    message: 'Sorry, there is a problem with connection with the server.',
     messageSize: '16px',
     messageColor: 'white',
     backgroundColor: '#EF4040',
