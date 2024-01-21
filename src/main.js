@@ -71,7 +71,7 @@ function fetchImages(value) {
     safesearch: 'true',
   });
 
-  return fetch(`${BASE_URL}?${searchParams}`).then(res => {
+  return fetch(`${BASE_URL}/?${searchParams}`).then(res => {
     if (!res.ok) {
       throw new Error(res.status);
     }
